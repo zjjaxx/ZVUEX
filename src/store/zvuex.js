@@ -9,13 +9,15 @@ class Store{
                 }
             })
         }
+        this.commit=this.commit.bind(this)
+        this.dispatch=this.dispatch.bind(this)
         Vue.observable(this.$options.state)
     }
     commit(eventName,...payload){
         this.$options.mutations[eventName].call(this.$options,this.$options.state,...payload)
     }
     dispatch(eventName,payload){
-        this.$options.actions[eventName].call(this.$options,{commit:this.commit.bind(this)},payload)
+        this.$options.actions[eventName].call(this.$options,this,payload)
     }
 }
 
