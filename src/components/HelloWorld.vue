@@ -27,6 +27,9 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+    <button @click="addCount">addCount</button>
+    <button @click="addCountSync">addCountSync</button>
+    <h1>{{$store.state.count}}</h1>
   </div>
 </template>
 
@@ -35,6 +38,14 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  methods:{
+    addCount(){
+      this.$store.commit("addCount",2)
+    },
+    addCountSync(){
+      this.$store.dispatch("addCountSync",{payload:3})
+    }
   }
 }
 </script>
